@@ -5,11 +5,13 @@ let buttonSelected = null
 
 function ReceiveBillValue(){
    bill = document.querySelector("#bill").valueAsNumber
+   calculate()
 
 }
 
 function ReceiveNumberOfPeopleValue(){
    numberOfPeople = document.querySelector("#people").valueAsNumber
+   calculate()
 
 }
 
@@ -30,6 +32,7 @@ function receiveTipPercentageValue(value){
 
    buttonSelected = document.querySelector(`#button-${value}`)
    buttonSelected.classList.add("button-selected")
+   calculate()
 }
 
 function receiveCustomTipPercentageValue(){
@@ -39,5 +42,21 @@ function receiveCustomTipPercentageValue(){
    }
 
    tipPercentage = document.querySelector("#custom-tip").valueAsNumber / 100
+   calculate()
    
 }
+
+function calculate(){
+   if (bill !== 0 && tipPercentage !== 0 && numberOfPeople !== 0){
+      let amountStrong = document.querySelector(".amount strong")
+      let tipAmountPerson = (bill * tipPercentage) / numberOfPeople
+      amountStrong.innerText = `$${tipAmountPerson.toFixed(2)}`
+
+      let totalStrong = document.querySelector(".total strong")
+      let totalPerson = (bill / numberOfPeople) + tipAmountPerson
+      totalStrong.innerText = `$${totalPerson.toFixed(2)}`
+   } else {
+      console.log("preencha tudo")
+   }
+}
+
