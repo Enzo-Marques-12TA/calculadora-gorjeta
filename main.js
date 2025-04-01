@@ -1,6 +1,7 @@
-let bill = 0;
-let tipPercentage = 0;
-let numberOfPeople = 0;
+let bill = 0
+let tipPercentage = 0
+let numberOfPeople = 0
+let buttonSelected = null
 
 function ReceiveBillValue(){
    bill = document.querySelector("#bill").valueAsNumber
@@ -10,5 +11,17 @@ function ReceiveBillValue(){
 function ReceiveNumberOfPeopleValue(){
    numberOfPeople = document.querySelector("#people").valueAsNumber
 
+}
+
+function receiveTipPercentageValue(value){
+   if(buttonSelected!==null){
+      buttonSelected.classList.remove("button-selected")
+   }
+
+   tipPercentage = value / 100
+   console.log(tipPercentage)
+
+   buttonSelected = document.querySelector(`#button-${value}`)
+   buttonSelected.classList.add("button-selected")
 }
 
